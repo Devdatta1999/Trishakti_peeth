@@ -1,0 +1,23 @@
+{
+  "name": "trishakti-peeth",
+  "version": "1.0.0",
+  "description": "Trishakti Peeth Temple Website",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && nodemon index.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "start": "cd server && node index.js",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "tunnel:frontend": "lt --port 3000",
+    "tunnel:backend": "lt --port 5001"
+  },
+  "keywords": ["temple", "website", "react", "nodejs"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2"
+  }
+}

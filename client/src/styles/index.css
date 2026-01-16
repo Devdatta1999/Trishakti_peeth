@@ -1,0 +1,1838 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+:root {
+    --primary-orange: #FF6600;
+    --dark-orange: #E55A00;
+    --light-orange: #FF8533;
+    --gradient-orange: linear-gradient(135deg, #FF6600 0%, #FF8533 100%);
+    --dark-bg: rgba(0, 0, 0, 0.7);
+    --text-dark: #333;
+    --text-light: #666;
+    --white: #ffffff;
+    --off-white: #F5F5F5;
+    --header-offset: 120px;
+}
+
+body {
+    font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    backdrop-filter: none;
+    z-index: 1000;
+    padding: 20px 0 15px 0;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background: var(--white);
+    backdrop-filter: none;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    padding: 15px 0 10px 0;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+.temple-icon {
+    font-size: 64px;
+    color: var(--white);
+    transition: color 0.3s ease;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.temple-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.header.scrolled .temple-icon {
+    color: var(--primary-orange);
+    text-shadow: none;
+}
+
+.temple-name {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    text-align: center;
+    color: var(--white);
+    transition: color 0.3s ease;
+}
+
+.header.scrolled .temple-name {
+    text-shadow: none;
+    color: var(--text-dark);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.header.scrolled .nav-link {
+    color: var(--text-dark);
+    text-shadow: none;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-orange);
+}
+
+.header.scrolled .nav-link.active {
+    color: var(--primary-orange);
+    text-shadow: none;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-orange);
+}
+
+.donate-btn {
+    background: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    padding: 20px 45px;
+    border-radius: 30px;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
+    text-shadow: none;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.donate-btn:hover {
+    background: var(--dark-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* Hero Section with Carousel */
+.hero-section {
+    margin-top: 0;
+    position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.hero-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    overflow: hidden;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: var(--primary-orange);
+    width: 30px;
+    border-radius: 6px;
+}
+
+/* Mantra Scrolling Strip */
+.mantra-strip {
+    background: var(--gradient-orange);
+    padding: 22px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.mantra-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.mantra-wrapper {
+    display: flex;
+    width: fit-content;
+    animation: scroll-mantra 120s linear infinite;
+}
+
+.mantra-text {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 28px;
+    color: var(--white);
+    white-space: nowrap;
+    display: inline-block;
+    padding-right: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+@keyframes scroll-mantra {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* About Section */
+.about-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+
+.about-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.section-label {
+    font-size: 20px;
+    font-weight: 700;
+    color: #8B0000;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 52px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 30px;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+    max-width: 900px;
+}
+
+.section-description {
+    font-size: 20px;
+    color: #000000;
+    line-height: 2;
+    text-align: left;
+    max-width: 100%;
+    letter-spacing: 0.2px;
+}
+
+.temple-image-container {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.devi-carousel-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 40px auto 0;
+    padding: 0 60px;
+}
+
+.devi-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.devi-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.devi-card {
+    flex: 0 0 280px;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.devi-card.active {
+    flex: 0 0 400px;
+    height: 500px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.devi-image-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+}
+
+.devi-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.devi-card-label {
+    padding: 20px;
+    background: var(--white);
+    text-align: center;
+}
+
+.devi-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+}
+
+.devi-card.active .devi-name {
+    font-size: 22px;
+}
+
+.temple-image {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.read-history-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.read-history-btn {
+    background: linear-gradient(135deg, #FF6600 0%, #E55A00 100%);
+    color: var(--white);
+    border: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
+    letter-spacing: 0.5px;
+}
+
+.read-history-btn:hover {
+    background: linear-gradient(135deg, #E55A00 0%, #CC4D00 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.5);
+}
+
+/* Aarti Schedule Section */
+.aarti-section {
+    padding: 80px 0;
+    background: var(--off-white);
+}
+
+.live-updates {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.lotus-icon {
+    font-size: 24px;
+    color: #8B0000;
+}
+
+.live-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #8B0000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.aarti-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
+}
+
+.schedule-card:first-child {
+    grid-column: 1 / 3;
+}
+
+.schedule-card:nth-child(2) {
+    grid-column: 3 / 5;
+}
+
+.schedule-card:nth-child(3) {
+    grid-column: 5 / 7;
+}
+
+.schedule-card.bottom-left {
+    grid-column: 2 / 4;
+    grid-row: 2;
+}
+
+.schedule-card.bottom-right {
+    grid-column: 4 / 6;
+    grid-row: 2;
+}
+
+@media (max-width: 968px) {
+    .schedule-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .schedule-card:first-child,
+    .schedule-card:nth-child(2),
+    .schedule-card:nth-child(3),
+    .schedule-card.bottom-left,
+    .schedule-card.bottom-right {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+.schedule-card {
+    background: var(--white);
+    border: 2px solid var(--primary-orange);
+    border-radius: 15px;
+    padding: 30px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.schedule-card:hover {
+    background: var(--gradient-orange);
+    border-color: var(--primary-orange);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(255, 102, 0, 0.4);
+}
+
+.schedule-card:hover .card-title,
+.schedule-card:hover .card-time {
+    color: var(--white);
+}
+
+.highlight-card {
+    background: var(--gradient-orange);
+    border: none;
+    color: var(--white);
+}
+
+.highlight-card .card-title,
+.highlight-card .card-time {
+    color: var(--white);
+}
+
+.card-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.card-icon-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.card-time {
+    font-size: 18px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.schedule-note {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+/* Management Section */
+.management-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
+}
+
+.trustee-card {
+    background: var(--white);
+    border: 2px solid var(--primary-orange);
+    border-radius: 15px;
+    padding: 40px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+}
+
+.trustee-card:hover {
+    background: var(--gradient-orange);
+    border-color: var(--primary-orange);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(255, 102, 0, 0.4);
+    color: var(--white);
+}
+
+.trustee-card:hover .card-title,
+.trustee-card:hover .card-time {
+    color: var(--white);
+}
+
+.trustee-card .card-title {
+    color: var(--text-dark);
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.trustee-card .card-time {
+    color: var(--text-light);
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Grid layout for 6 cards: 3 columns x 2 rows */
+.management-grid .trustee-card {
+    grid-column: span 1;
+}
+
+@media (max-width: 968px) {
+    .management-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .management-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Utsav Section */
+.utsav-section {
+    padding: 100px 0;
+    background: var(--off-white);
+}
+
+.utsav-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.utsav-label {
+    font-size: 20px;
+    font-weight: 700;
+    color: #8B0000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.utsav-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.utsav-description {
+    font-size: 18px;
+    color: var(--text-dark);
+    line-height: 1.8;
+    text-align: left;
+}
+
+.utsav-gallery-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.utsav-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 40px 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.utsav-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.utsav-card {
+    flex: 0 0 280px;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.utsav-card.active {
+    flex: 0 0 400px;
+    height: 500px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.utsav-image-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+}
+
+.utsav-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.utsav-card-label {
+    padding: 20px;
+    background: var(--white);
+    text-align: center;
+}
+
+.utsav-festival-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.utsav-card.active .utsav-festival-name {
+    font-size: 22px;
+}
+
+.gallery-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 32px;
+    color: var(--primary-orange);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-btn:hover {
+    background: var(--primary-orange);
+    color: var(--white);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-btn-prev {
+    left: 0;
+}
+
+.gallery-btn-next {
+    right: 0;
+}
+
+.gallery-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.gallery-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.gallery-indicator.active {
+    background: var(--primary-orange);
+    width: 30px;
+    border-radius: 6px;
+}
+
+/* Footer */
+.footer {
+    background: var(--gradient-orange);
+    color: var(--white);
+    padding: 60px 0 0;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.footer-temple-icon {
+    font-size: 50px;
+    color: var(--white);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.footer-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.footer-logo-text h3 {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.footer-logo-text p {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.footer-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    opacity: 0.9;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--white);
+    padding-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.contact-icon {
+    font-size: 22px;
+    margin-top: 2px;
+}
+
+.map-container {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: var(--white);
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 8px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.social-icon:hover {
+    background: var(--white);
+    color: var(--primary-orange);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.footer-bottom {
+    background: var(--dark-orange);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.scroll-top {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--primary-orange);
+    color: var(--white);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.scroll-top:hover {
+    background: var(--white);
+    color: var(--primary-orange);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .header-container {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .nav-menu {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .hero-section {
+        height: calc(100vh + var(--header-offset));
+        min-height: calc(100vh + var(--header-offset));
+    }
+
+    .section-title {
+        font-size: 40px;
+    }
+
+    .section-description {
+        font-size: 18px;
+    }
+
+    .about-content {
+        padding: 0 40px;
+    }
+
+    .aarti-title {
+        font-size: 28px;
+    }
+
+    .schedule-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 25px 0;
+        background: transparent;
+    }
+
+    .header.scrolled {
+        background: var(--white);
+    }
+
+    .header-container {
+        padding: 0 20px;
+    }
+
+    .temple-icon {
+        font-size: 42px;
+        width: 180px;
+        height: 180px;
+    }
+
+    .temple-name {
+        font-size: 24px;
+    }
+
+    .temple-location {
+        font-size: 16px;
+    }
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .nav-link {
+        font-size: 17px;
+    }
+
+    .donate-btn {
+        padding: 14px 28px;
+        font-size: 17px;
+    }
+
+    .hero-section {
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    .carousel-container {
+        height: 100%;
+    }
+
+    .mantra-text {
+        font-size: 22px;
+    }
+
+    .mantra-strip {
+        padding: 22px 0;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+
+    .section-description {
+        font-size: 17px;
+    }
+
+    .about-content {
+        padding: 0 30px;
+    }
+
+    .section-description {
+        font-size: 17px;
+    }
+
+    .about-content {
+        padding: 0 30px;
+    }
+
+    .aarti-title {
+        font-size: 24px;
+    }
+
+    .utsav-section {
+        padding: 60px 0;
+    }
+
+    .utsav-title {
+        font-size: 32px;
+    }
+
+    .utsav-description {
+        font-size: 16px;
+    }
+
+    .utsav-gallery-container {
+        padding: 0 50px;
+    }
+
+    .utsav-card {
+        flex: 0 0 220px;
+        height: 320px;
+    }
+
+    .utsav-card.active {
+        flex: 0 0 300px;
+        height: 400px;
+    }
+
+    .gallery-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+
+    .gallery-btn-prev {
+        left: 10px;
+    }
+
+    .gallery-btn-next {
+        right: 10px;
+    }
+
+    .schedule-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    .carousel-container {
+        height: 100%;
+    }
+
+    .mantra-text {
+        font-size: 18px;
+    }
+
+    .mantra-strip {
+        padding: 18px 0;
+    }
+
+    .about-section,
+    .aarti-section,
+    .utsav-section {
+        padding: 50px 0;
+    }
+
+    .utsav-title {
+        font-size: 32px;
+    }
+
+    .utsav-description {
+        font-size: 16px;
+    }
+
+    .utsav-gallery-container {
+        padding: 0 30px;
+    }
+
+    .utsav-card {
+        flex: 0 0 180px;
+        height: 280px;
+    }
+
+    .utsav-card.active {
+        flex: 0 0 250px;
+        height: 350px;
+    }
+
+    .gallery-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+
+    .gallery-btn-prev {
+        left: 5px;
+    }
+
+    .gallery-btn-next {
+        right: 5px;
+    }
+}
+
+/* Volunteer and Donation Form Styles */
+.volunteer-info-section,
+.donation-form-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.volunteer-form-section {
+    padding: 80px 0;
+    background: var(--off-white);
+}
+
+.payment-section {
+    padding: 80px 0;
+    background: var(--off-white);
+}
+
+.form-section-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-section-description {
+    font-size: 18px;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.volunteer-form,
+.donation-form {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.form-group input.readonly-input {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.form-group select:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--gradient-orange);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.3);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.submit-message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.submit-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.submit-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Payment Section Styles */
+.payment-modes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.payment-mode-btn {
+    padding: 20px 60px;
+    font-size: 24px;
+    font-weight: 700;
+    border: 3px solid var(--primary-orange);
+    background: var(--white);
+    color: var(--primary-orange);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-mode-btn:hover {
+    background: var(--light-orange);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.3);
+}
+
+.payment-mode-btn.active {
+    background: var(--primary-orange);
+    color: var(--white);
+}
+
+.payment-details {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.payment-details h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+}
+
+.qr-code-container {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.qr-code {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bank-details {
+    text-align: left;
+    margin: 30px 0;
+}
+
+.bank-detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.bank-detail-item:last-child {
+    border-bottom: none;
+}
+
+.bank-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 16px;
+}
+
+.bank-value {
+    color: var(--text-light);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.payment-instruction {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+/* Back Button Styles */
+.back-btn {
+    background: transparent;
+    color: var(--primary-orange);
+    border: 2px solid var(--primary-orange);
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn:hover {
+    background: var(--primary-orange);
+    color: var(--white);
+    transform: translateX(-3px);
+}
+
+.change-payment-btn {
+    background: var(--off-white);
+    color: var(--text-dark);
+    border: 2px solid #e0e0e0;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.change-payment-btn:hover {
+    background: #e0e0e0;
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+}
+
+/* Responsive Styles for Forms */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .volunteer-form,
+    .donation-form {
+        padding: 30px 20px;
+    }
+
+    .form-section-title {
+        font-size: 32px;
+    }
+
+    .payment-modes {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .payment-mode-btn {
+        padding: 16px 40px;
+        font-size: 20px;
+    }
+
+    .payment-details {
+        padding: 30px 20px;
+    }
+
+    .bank-detail-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* About Us Page Styles */
+
+/* About Hero Section */
+.about-hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.about-hero-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.about-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.about-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+    padding: 100px 60px 60px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.about-hero-title {
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--white);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+/* About Temple Section (on About Us page) */
+.about-temple-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+/* About Goddess Section */
+.about-goddess-section {
+    padding: 100px 0;
+    background: var(--off-white);
+}
+
+.goddess-section-title {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.goddess-intro {
+    font-size: 20px;
+    color: var(--text-dark);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+
+.goddess-card {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    margin-bottom: 80px;
+    background: var(--white);
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.goddess-card.reverse {
+    flex-direction: row-reverse;
+}
+
+.goddess-image-wrapper {
+    flex: 0 0 400px;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.goddess-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.goddess-content {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.goddess-name {
+    font-size: 42px;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+}
+
+.goddess-description {
+    font-size: 18px;
+    color: var(--text-dark);
+    line-height: 1.9;
+    text-align: justify;
+}
+
+/* Responsive Styles for About Us Page */
+@media (max-width: 1024px) {
+    .about-hero-title {
+        font-size: 56px;
+    }
+
+    .goddess-card {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .goddess-card.reverse {
+        flex-direction: column;
+    }
+
+    .goddess-image-wrapper {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 400px;
+    }
+
+    .goddess-section-title {
+        font-size: 42px;
+    }
+
+    .goddess-name {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero-section {
+        height: 70vh;
+    }
+
+    .about-hero-overlay {
+        padding: 60px 30px 40px;
+    }
+
+    .about-hero-title {
+        font-size: 42px;
+    }
+
+    .about-temple-section,
+    .about-goddess-section {
+        padding: 60px 0;
+    }
+
+    .goddess-card {
+        padding: 30px 20px;
+        margin-bottom: 50px;
+    }
+
+    .goddess-image-wrapper {
+        height: 350px;
+    }
+
+    .goddess-section-title {
+        font-size: 32px;
+    }
+
+    .goddess-name {
+        font-size: 28px;
+    }
+
+    .goddess-description {
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .goddess-intro {
+        font-size: 18px;
+        padding: 0 15px;
+    }
+}
+
