@@ -101,4 +101,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize scroll top button as hidden
     scrollTopBtn.style.display = 'none';
 });
-
