@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const Header = () => {
   const [activeLink, setActiveLink] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -41,6 +42,7 @@ const Header = () => {
   const handleNavClick = (e, section) => {
     e.preventDefault();
     setActiveLink(section);
+    setIsMobileMenuOpen(false); // Close mobile menu when a link is clicked
 
     if (section === 'about') {
       navigate('/about');
@@ -87,7 +89,21 @@ const Header = () => {
               <img src="/images/temple_new_logo1.png" alt="Temple Logo" className="temple-logo-img" />
             </div>
           </div>
-          <nav className="nav-menu">
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="mobile-menu-toggle"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+
+          <nav className={`nav-menu ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
             <a
               href="#home"
               className={`nav-link ${activeLink === 'home' ? 'active' : ''}`}
@@ -133,6 +149,7 @@ const Header = () => {
           </nav>
           <button className="donate-btn" onClick={(e) => {
             e.preventDefault();
+            setIsMobileMenuOpen(false);
             navigate('/donation');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}>Donate Now</button>

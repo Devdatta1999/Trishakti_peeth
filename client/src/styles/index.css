@@ -9,6 +9,8 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 :root {
@@ -32,12 +34,44 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent horizontal scroll on mobile - be more specific */
+img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+    button,
+    a,
+    .nav-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
 }
 
 /* Header Styles */
@@ -68,6 +102,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    position: relative;
 }
 
 .header-top {
@@ -84,6 +119,7 @@ body {
     flex-wrap: nowrap;
     gap: 20px;
     width: 100%;
+    position: relative;
 }
 
 .logo-section {
@@ -145,6 +181,11 @@ body {
     justify-content: center;
 }
 
+/* Hide mobile menu toggle on desktop */
+.mobile-menu-toggle {
+    display: none;
+}
+
 .nav-link {
     color: var(--white);
     text-decoration: none;
@@ -198,6 +239,54 @@ body {
     letter-spacing: 0.5px;
     white-space: nowrap;
     flex-shrink: 0;
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    flex-shrink: 0;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.header.scrolled .hamburger span {
+    background: var(--text-dark);
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
 }
 
 .donate-btn:hover {
@@ -451,6 +540,12 @@ body {
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure all images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .read-history-container {
@@ -998,6 +1093,18 @@ body {
     border-radius: 8px;
 }
 
+@media (max-width: 768px) {
+    .map-container iframe {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container iframe {
+        height: 150px;
+    }
+}
+
 .social-icons {
     display: flex;
     gap: 15px;
@@ -1104,11 +1211,26 @@ body {
     .schedule-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
+
+    .devi-carousel-container,
+    .utsav-gallery-container {
+        padding: 0 40px;
+    }
+
+    .devi-card {
+        flex: 0 0 240px;
+        height: 350px;
+    }
+
+    .devi-card.active {
+        flex: 0 0 320px;
+        height: 450px;
+    }
 }
 
 @media (max-width: 768px) {
     .header {
-        padding: 25px 0;
+        padding: 15px 0;
         background: transparent;
     }
 
@@ -1117,133 +1239,115 @@ body {
     }
 
     .header-container {
-        padding: 0 20px;
+        padding: 0 15px;
+        gap: 10px;
+    }
+
+    .header-top {
+        order: 1;
+    }
+
+    .header-bottom {
+        order: 2;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
     }
 
     .temple-icon {
-        font-size: 42px;
-        width: 180px;
-        height: 180px;
+        width: 120px !important;
+        height: 120px !important;
     }
 
     .temple-name {
-        font-size: 24px;
+        font-size: 20px !important;
+        white-space: normal !important;
+        line-height: 1.2 !important;
     }
 
-    .temple-location {
-        font-size: 16px;
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+        display: block !important;
+        order: 3;
     }
 
+    /* Hide desktop nav menu on mobile - force hide */
+    .nav-menu:not(.mobile-open) {
+        display: none !important;
+    }
+
+    /* Mobile menu styling */
     .nav-menu {
-        gap: 15px;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: -15px;
+        right: -15px;
+        background: var(--white);
+        flex-direction: column;
+        gap: 0;
+        padding: 15px 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+        order: 4;
+        width: calc(100% + 30px);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        margin: 0;
+        border-radius: 0 0 8px 8px;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+        flex: none !important;
+    }
+
+    /* Show mobile menu when open */
+    .nav-menu.mobile-open {
+        display: flex !important;
+        max-height: 500px;
+        padding: 20px 0;
     }
 
     .nav-link {
-        font-size: 17px;
+        color: var(--text-dark) !important;
+        font-size: 18px !important;
+        padding: 15px 20px !important;
+        width: 100% !important;
+        text-align: left !important;
+        text-shadow: none !important;
+        border-bottom: 1px solid #f0f0f0;
+        min-height: 50px;
+        display: flex !important;
+        align-items: center;
+        white-space: normal !important;
+        flex-shrink: 1 !important;
+        justify-content: flex-start !important;
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: var(--off-white);
+        color: var(--primary-orange);
     }
 
     .donate-btn {
-        padding: 14px 28px;
-        font-size: 17px;
-    }
-
-    .hero-section {
-        height: 100vh;
-        min-height: 100vh;
-    }
-
-    .carousel-container {
-        height: 100%;
-    }
-
-    .mantra-text {
-        font-size: 22px;
-    }
-
-    .mantra-strip {
-        padding: 22px 0;
-    }
-
-    .section-title {
-        font-size: 36px;
-    }
-
-    .section-description {
-        font-size: 17px;
-    }
-
-    .about-content {
-        padding: 0 30px;
-    }
-
-    .section-description {
-        font-size: 17px;
-    }
-
-    .about-content {
-        padding: 0 30px;
-    }
-
-    .aarti-title {
-        font-size: 24px;
-    }
-
-    .utsav-section {
-        padding: 60px 0;
-    }
-
-    .utsav-title {
-        font-size: 32px;
-    }
-
-    .utsav-description {
+        padding: 12px 24px;
         font-size: 16px;
+        order: 2;
+        width: auto;
+        flex-shrink: 0;
     }
 
-    .utsav-gallery-container {
-        padding: 0 50px;
+    .logo-section {
+        order: 1;
+        flex-shrink: 0;
     }
 
-    .utsav-card {
-        flex: 0 0 220px;
-        height: 320px;
-    }
-
-    .utsav-card.active {
-        flex: 0 0 300px;
-        height: 400px;
-    }
-
-    .gallery-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
-    }
-
-    .gallery-btn-prev {
-        left: 10px;
-    }
-
-    .gallery-btn-next {
-        right: 10px;
-    }
-
-    .schedule-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
     .hero-section {
         height: 100vh;
         min-height: 100vh;
@@ -1255,20 +1359,50 @@ body {
 
     .mantra-text {
         font-size: 18px;
+        padding-right: 30px;
     }
 
     .mantra-strip {
         padding: 18px 0;
     }
 
-    .about-section,
-    .aarti-section,
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-description {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .section-label {
+        font-size: 16px;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+    }
+
+    .about-content {
+        padding: 0 20px;
+    }
+
+    .about-section {
+        padding: 50px 0;
+    }
+
+    .aarti-title {
+        font-size: 24px;
+    }
+
+    .aarti-section {
+        padding: 50px 0;
+    }
+
     .utsav-section {
         padding: 50px 0;
     }
 
     .utsav-title {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .utsav-description {
@@ -1276,17 +1410,31 @@ body {
     }
 
     .utsav-gallery-container {
-        padding: 0 30px;
+        padding: 0 20px;
+    }
+
+    .devi-carousel-container {
+        padding: 0 20px;
     }
 
     .utsav-card {
-        flex: 0 0 180px;
-        height: 280px;
+        flex: 0 0 200px;
+        height: 300px;
     }
 
     .utsav-card.active {
-        flex: 0 0 250px;
-        height: 350px;
+        flex: 0 0 280px;
+        height: 380px;
+    }
+
+    .devi-card {
+        flex: 0 0 200px;
+        height: 300px;
+    }
+
+    .devi-card.active {
+        flex: 0 0 280px;
+        height: 380px;
     }
 
     .gallery-btn {
@@ -1301,6 +1449,210 @@ body {
 
     .gallery-btn-next {
         right: 5px;
+    }
+
+    .schedule-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .schedule-card {
+        padding: 20px 15px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-time {
+        font-size: 16px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .footer-container {
+        padding: 0 15px;
+    }
+
+    .footer {
+        padding: 40px 0 0;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 20px;
+    }
+
+    .footer-logo-text h3 {
+        font-size: 22px;
+    }
+
+    .footer-logo-text p {
+        font-size: 16px;
+    }
+
+    .contact-item {
+        font-size: 16px;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .scroll-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        padding: 0 10px;
+    }
+
+    .temple-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .temple-name {
+        font-size: 18px;
+    }
+
+    .donate-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .hero-section {
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    .carousel-container {
+        height: 100%;
+    }
+
+    .mantra-text {
+        font-size: 16px;
+        padding-right: 25px;
+    }
+
+    .mantra-strip {
+        padding: 15px 0;
+    }
+
+    .about-section,
+    .aarti-section,
+    .utsav-section {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .section-description {
+        font-size: 15px;
+    }
+
+    .section-label {
+        font-size: 14px;
+    }
+
+    .about-content {
+        padding: 0 15px;
+    }
+
+    .utsav-title {
+        font-size: 24px;
+    }
+
+    .utsav-description {
+        font-size: 15px;
+    }
+
+    .utsav-gallery-container,
+    .devi-carousel-container {
+        padding: 0 15px;
+    }
+
+    .utsav-card {
+        flex: 0 0 160px;
+        height: 250px;
+    }
+
+    .utsav-card.active {
+        flex: 0 0 220px;
+        height: 320px;
+    }
+
+    .devi-card {
+        flex: 0 0 160px;
+        height: 250px;
+    }
+
+    .devi-card.active {
+        flex: 0 0 220px;
+        height: 320px;
+    }
+
+    .gallery-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+
+    .gallery-btn-prev {
+        left: 2px;
+    }
+
+    .gallery-btn-next {
+        right: 2px;
+    }
+
+    .schedule-card {
+        padding: 15px 12px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card-time {
+        font-size: 14px;
+    }
+
+    .card-icon-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .footer-logo-text h3 {
+        font-size: 20px;
+    }
+
+    .footer-logo-text p {
+        font-size: 14px;
+    }
+
+    .footer-title {
+        font-size: 20px;
+    }
+
+    .contact-item {
+        font-size: 14px;
+    }
+
+    .read-history-btn {
+        padding: 12px 30px;
+        font-size: 16px;
     }
 }
 
@@ -1604,36 +1956,114 @@ body {
 
 /* Responsive Styles for Forms */
 @media (max-width: 768px) {
+    .volunteer-info-section,
+    .donation-form-section,
+    .volunteer-form-section,
+    .payment-section {
+        padding: 50px 0;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .volunteer-form,
     .donation-form {
         padding: 30px 20px;
+        margin: 0 15px;
     }
 
     .form-section-title {
-        font-size: 32px;
+        font-size: 28px;
+        padding: 0 20px;
+    }
+
+    .form-section-description {
+        font-size: 16px;
+        padding: 0 20px;
     }
 
     .payment-modes {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        padding: 0 20px;
     }
 
     .payment-mode-btn {
-        padding: 16px 40px;
-        font-size: 20px;
+        padding: 14px 30px;
+        font-size: 18px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
 
     .payment-details {
         padding: 30px 20px;
+        margin: 0 15px;
     }
 
     .bank-detail-item {
         flex-direction: column;
         gap: 5px;
+        align-items: flex-start;
+    }
+
+    .bank-label,
+    .bank-value {
+        font-size: 15px;
+    }
+
+    .qr-code {
+        max-width: 250px;
+    }
+
+    .submit-btn {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .volunteer-form,
+    .donation-form {
+        padding: 25px 15px;
+        margin: 0 10px;
+    }
+
+    .form-section-title {
+        font-size: 24px;
+        padding: 0 15px;
+    }
+
+    .form-section-description {
+        font-size: 15px;
+        padding: 0 15px;
+    }
+
+    .payment-mode-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+
+    .payment-details {
+        padding: 25px 15px;
+        margin: 0 10px;
+    }
+
+    .qr-code {
+        max-width: 200px;
+    }
+
+    .form-group label {
+        font-size: 15px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 15px;
+        padding: 10px 12px;
     }
 }
 
@@ -1769,6 +2199,7 @@ body {
     .goddess-card {
         flex-direction: column;
         gap: 40px;
+        padding: 40px 30px;
     }
 
     .goddess-card.reverse {
@@ -1788,50 +2219,108 @@ body {
     .goddess-name {
         font-size: 36px;
     }
+
+    .goddess-intro {
+        font-size: 19px;
+        padding: 0 30px;
+    }
 }
 
 @media (max-width: 768px) {
     .about-hero-section {
-        height: 70vh;
+        height: 60vh;
+        min-height: 400px;
     }
 
     .about-hero-overlay {
-        padding: 60px 30px 40px;
+        padding: 40px 20px 30px;
     }
 
     .about-hero-title {
-        font-size: 42px;
+        font-size: 32px;
+        letter-spacing: 1px;
     }
 
     .about-temple-section,
     .about-goddess-section {
-        padding: 60px 0;
+        padding: 50px 0;
     }
 
     .goddess-card {
-        padding: 30px 20px;
-        margin-bottom: 50px;
+        padding: 25px 15px;
+        margin-bottom: 40px;
+        gap: 30px;
     }
 
     .goddess-image-wrapper {
-        height: 350px;
+        height: 300px;
     }
 
     .goddess-section-title {
-        font-size: 32px;
+        font-size: 28px;
+        padding: 0 20px;
     }
 
     .goddess-name {
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .goddess-description {
-        font-size: 16px;
+        font-size: 15px;
         text-align: left;
+        line-height: 1.7;
     }
 
     .goddess-intro {
-        font-size: 18px;
+        font-size: 16px;
+        padding: 0 20px;
+        margin-bottom: 40px;
+    }
+
+    .goddess-content {
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero-section {
+        height: 50vh;
+        min-height: 300px;
+    }
+
+    .about-hero-overlay {
+        padding: 30px 15px 20px;
+    }
+
+    .about-hero-title {
+        font-size: 24px;
+    }
+
+    .goddess-card {
+        padding: 20px 12px;
+        margin-bottom: 30px;
+    }
+
+    .goddess-image-wrapper {
+        height: 250px;
+    }
+
+    .goddess-section-title {
+        font-size: 24px;
+        padding: 0 15px;
+    }
+
+    .goddess-name {
+        font-size: 20px;
+    }
+
+    .goddess-description {
+        font-size: 14px;
+    }
+
+    .goddess-intro {
+        font-size: 15px;
         padding: 0 15px;
     }
 }
