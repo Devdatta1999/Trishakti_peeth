@@ -1,0 +1,11 @@
+[build]
+  # Install all dependencies (root, client, and server if needed)
+  command = "npm run build"
+  # The directory that contains the deploy-ready HTML files and assets
+  publish = "client/build"
+
+# For React Router (SPA routing)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
